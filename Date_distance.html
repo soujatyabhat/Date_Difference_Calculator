@@ -1,0 +1,110 @@
+<html>
+<head>
+<title> Date Diff Calculator </title> </head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<script language="JavaScript">
+
+function date_diff()
+{
+var array = [0,31,28,31,30,31,30,31,31,30,31,30,31]; // Array consist of Dates of all months //
+var sum = 0;
+var mm_one = frm.mm1.selectedIndex; //Index value of first month //
+var mm_two = frm.mm2.selectedIndex; //Index value of second month //
+
+if (yy.value % 4 == 0 && yy.value % 100 == 0 && yy.value % 400 == 0)
+{
+array[2] = 29; //Push date 29 in array[2] (February) if given year is leap year // 
+}
+else
+{
+array[2] = 28;
+}
+if(mm_one == mm_two)
+	{
+		total_date = dd2.value - dd1.value; //difference between two dates of same month //
+
+	}
+else
+{
+for (i = mm_one + 1; i < mm_two; i++)
+	{
+		sum = sum + array[i]; //Calculate the intermediated months //
+	}
+remaining_date = array[mm_one] - parseInt(dd1.value);
+total_date = sum + remaining_date + parseInt(dd2.value);
+}
+	
+para.innerHTML = "Result :  The remaining dates between two dates are :  " + total_date;
+}
+
+function check(n)
+{
+if(n > 31)
+	{
+		alert("The given date is not valid");
+		n.value ="";
+	}
+}
+</script>
+<body bgcolor="pink">
+<form name="frm"> 
+<font color="maroon"> <h2> <u> Date Distance Calculation </u> </h2> </font>
+<br>
+<font face="verdana" color="blue"> <b> <label for="frm"> From : </label> </b> </font>
+<br>
+<br> 
+Date : <input type="text" id="dd1" onblur="check(dd1.value)"> 
+Month: <select name="mm1">
+		<option> </option>
+		<option> JAN </option>
+		<option> FEB </option>
+		<option> MAR </option>
+		<option> APL </option>
+		<option> MAY </option>
+		<option> JUN </option>
+		<option> JUL </option>
+		<option> AUG </option>
+		<option> SEP </option>
+		<option> OCT </option>
+		<option> NOV </option>
+		<option> DEC </option>
+		</select>
+Year : <input type="text" maxlength="4" id="yy">
+<br>
+<br>	
+<font face="verdana" color="blue"> <b> <label for="frm"> To : </label> </b> </font>
+<br>
+<br> 
+Date : <input type="text" id="dd2" onblur="check(dd2.value)"> 
+Month: <select name="mm2">
+		<option>  </option>
+		<option> JAN </option>
+		<option> FEB </option>
+		<option> MAR </option>
+		<option> APL </option>
+		<option> MAY </option>
+		<option> JUN </option>
+		<option> JUL </option>
+		<option> AUG </option>
+		<option> SEP </option>
+		<option> OCT </option>
+		<option> NOV </option>
+		<option> DEC </option>
+		</select>
+Year : <input type="text" maxlength="4">
+<br>
+<br>
+	<font color="red"> <b> <p id="para"> Result: </p> </font>
+<br>
+<input type="button" value="Check" onclick="date_diff(frm)"> 
+<input type="button" value="Reset" onclick="location.reload()">
+<br>
+<br>
+<font face="verdana" color="green">
+<p> Note: Date difference has restricted in between same year only. <br> You have to enter same year in both year input box. </p>
+</font>
+<p style="color:maroon;font-weight:900;"> Developed By: Soujatya Bhattacharya </p>
+</form>
+</body>
